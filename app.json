@@ -23,6 +23,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "fonts": {
+      "PlayfairDisplay-Regular": "./assets/fonts/PlayfairDisplay-Regular.ttf",
+      "PlayfairDisplay-Italic": "./assets/fonts/PlayfairDisplay-Italic.ttf",
+      "PlayfairDisplay-Medium": "./assets/fonts/PlayfairDisplay-Medium.ttf"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-asset"
+    ]
   }
 }
