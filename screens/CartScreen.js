@@ -26,8 +26,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => (
       >
         <Text style={styles.removeButtonText}>Remove</Text>
       </TouchableOpacity>
-    </View>
-    <View style={styles.quantityControls}>
+      <View style={styles.quantityControls}>
       <TouchableOpacity
         onPress={() => onUpdateQuantity(item.id, item.quantity - 1)}
       >
@@ -40,6 +39,8 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => (
         <Text style={styles.quantityButton}>+</Text>
       </TouchableOpacity>
     </View>
+    </View>
+    
   </View>
 );
 
@@ -49,13 +50,16 @@ export default function CartScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Cart</Text>
-        <View style={{ width: 24 }} />
-      </View>
+              <View style={[styles.header, styles.backArowContainer]}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                  <Ionicons name="chevron-back" size={20} color="#54634B" />
+                </TouchableOpacity>
+              </View>
+
+               <View style={styles.welcomeContainer}>
+                 <Text style={styles.welcomeTitle}>Cart</Text>
+                 <Text style={styles.greenRectangle}/>
+               </View>
 
       <ScrollView style={styles.content}>
         {items.map(item => (
@@ -108,18 +112,44 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
   },
   header: {
+    height: '20px',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
   },
-  headerTitle: {
-    fontFamily: 'PlayfairDisplay-Regular',
-    fontSize: 24,
-    color: '#4A5D4F',
+  backArowContainer: {
+    marginBottom: 16,
+    height: 20,
+  },
+  welcomeContainer: {
+    top: 0,
+    marginBottom: 24,
+    height: 65,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  welcomeTitle: {
+    fontFamily: 'AdobeGaramondProBoldItalic',
+    fontSize: 40,
+    lineHeight: 50,
+    color: '#54634B',
+
+  },
+  welcomeSubtitle: {
+    fontSize: 16,
+    color: '#54634B',
+    fontFamily: 'Avenir',
+    lineHeight: 24,
+    marginBottom: 8,
+  },
+  greenRectangle: {
+    backgroundColor: "#54634B", 
+    height: 15 
   },
   content: {
     flex: 1,
@@ -127,24 +157,27 @@ const styles = StyleSheet.create({
   },
   cartItem: {
     flexDirection: 'row',
-    backgroundColor: '#F8F8F8',
+    backgroundColor: '#FFF',
     borderRadius: 12,
     padding: 12,
     marginBottom: 16,
+    height: 126
   },
   itemImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 8,
+    width: 100,
+    height: 100,
   },
   itemDetails: {
     flex: 1,
     marginLeft: 12,
+    flexDirection: 'column',
+    display: 'flex',
   },
   itemName: {
     fontSize: 16,
     fontWeight: '500',
     marginBottom: 4,
+    fontFamily: 'Avenir',
   },
   itemPrice: {
     fontSize: 14,
@@ -226,7 +259,7 @@ const styles = StyleSheet.create({
     color: '#4A5D4F',
   },
   checkoutButton: {
-    backgroundColor: '#4A5D4F',
+    backgroundColor: '#54634B',
     margin: 20,
     paddingVertical: 16,
     borderRadius: 25,
@@ -236,5 +269,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
+    fontFamily: 'Avenir',
   },
 });
